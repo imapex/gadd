@@ -1,5 +1,4 @@
 # gadd
-boilerplate - Hello World
 
 Any applicable badges (build/documentation/collaboration/licenses should go here
 Description
