@@ -4,9 +4,17 @@
 
 Any applicable badges (build/documentation/collaboration/licenses should go here
 
-# Description
+# Description - Phase 1
 
-Boilerplate is a starting point application for the IMAPEX team @ Cisco.
+Branch to DC automated FW deployment based on threat. 
+ 
+The branch site has a NFVis device and only has a virutual router deployed/functioning (as a starting point). The ACI data center has an IPS monitoring traffic.
+
+Scenario: A user at a branch is comprising a server in the data center; the IPS sees this threat. Based on this threat 'event', we'll automatically deploy a virtual FW at the branch site and post notifications to a Spark room.
+
+For phase 1, we don't actually have an IPS at the DC, so we'll be simulating the attack event. However, we do have ACI: we will be gathering health statistics of the server and sending the information to our Spark room. In Phase 2 we'll have an actual IPS to provide 'real' data.
+
+The app will be running on docker containers. We have a dashboard to interface with the application.
 
 
 # Installation
