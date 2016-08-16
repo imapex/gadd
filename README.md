@@ -1,5 +1,5 @@
 # gadd
-##**Gomorrah Automated Distributed Defense**
+###**Gomorrah Automated Distributed Defense**
 
 # boilerplate Template
 
@@ -7,15 +7,10 @@ Any applicable badges (build/documentation/collaboration/licenses should go here
 
 # Description - Phase 1
 
-Branch to DC automated FW deployment based on threat. 
- 
-The branch site has a NFVis device and only has a virutual router deployed/functioning (as a starting point). The ACI data center has an IPS monitoring traffic.
+The demo will highlight Spark and NFVIS along with ACI and NGIPS*. The idea of the demo is:  based on an event/alert in the datacenter, dynamically deploy a FW at offending remote branch and post notifications in a Spark room. The branch site has a NFVis device and only has a virtual router deployed/functioning as a starting point.
 
-Scenario: A user at a branch is comprising a server in the data center; the IPS sees this threat. Based on this threat 'event', we'll automatically deploy a virtual FW at the branch site and post notifications to a Spark room.
+For phase 1, we don't actually have an IPS at the DC, so we'll simulate the attack event. However, we do have ACI: we will gather health statistics of a server along with ingress/egress stats and send the information to our Spark room. In Phase 2 we'll have an actual IPS to provide 'real' data.
 
-For phase 1, we don't actually have an IPS at the DC, so we'll be simulating the attack event. However, we do have ACI: we will be gathering health statistics of the server and sending the information to our Spark room. In Phase 2 we'll have an actual IPS to provide 'real' data.
-
-The app will be running on docker containers. We have a dashboard to interface with the application.
 
 
 # Installation
@@ -26,38 +21,55 @@ Prerequisites
 
 * Python 2.7+
 * [setuptools package](https://pypi.python.org/pypi/setuptools)
+* Docker
+
+We'll be leveraging the local/internal labs for ACI and a NFVIS. Our goal is to install/run in DevNet at a future date. 
 
 ## Downloading
 
-Provide instructions for how to obtain the software from this repository, if there are multiple options - please include
-as many as possible
+There are several ways to download this demo.
 
-Option A:
+Option A: Git
 
 If you have git installed, clone the repository
 
-    git clone https://github.com/imapex/boilerplate
+    git clone https://github.com/imapex/gadd
 
 Option B:
 
-If you don't have git, [download a zip copy of the repository](https://github.com/imapex/boilerplate/archive/master.zip)
+If you don't have git, download a zip copy of the repository
 and extract.
 
 Option C:
 
 The latest build of this project is also available as a Docker image from Docker Hub
 
-    docker pull username/image:tag
+    docker pull imapex/gadd:tag
 
 ## Installing
 
-Provide instructions on how to install / use the application
+We'll cover two ways to install and run this demo. You have a choice of using either:  
+- Docker container   
+- Running the python app native on our laptop.
 
-# Usage
+##(I) Running the Docker container
+ 
+###Setup 
+* execute setup script:``source gadd_setup.sh``
+* execute run script:``source gadd_run.sh``
+* open Spark
+* do this and do that...
+* etc...
 
-Provide any relevant code samples / CLI's to leverage the code
+###Usage  
+* open browser
+* do this and do that...
 
-    python app.py
+##(II) Running python apps on your laptop  
+
+###Setup  
+###Usage
+
 
 
 # Development
