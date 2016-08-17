@@ -22,7 +22,7 @@ For phase 1, we don't actually have an IPS at the datacenter, so we'll simulate 
 * Docker, running on a MAC. (Docker PC version of this document is coming at a later date).
 * An account on:``developer.ciscospark.com.``(Create an account if you already don't have one).
 * A Cisco Spark account:``web.ciscospark.com.``(Create an account if you already don't have one). 
-* If you don't have docker or are running a PC, no worries. We can run the demo with native python. However, you' need to the following:
+* If you don't have docker or are running a PC, we can run the demo with native python. However, you'll need to the following:
 		
 	* Python 2.7+ 
 	* [setuptools package](https://pypi.python.org/pypi/setuptools)
@@ -41,7 +41,7 @@ There are several ways to download this demo; docker container being the easiest
 The latest build of this project is available as a Docker image from Docker Hub
 
     docker pull imapex/gadd:tag
-You will also need a to have a environmental variable file built. There's a template on``github.com/imapex/gadd`` called``my_env_template``that you can use as a starting point. We'll explain later in this docuement on usage. See Option B or C on how to download.
+You will also need to have an environmental variable file built. There's a template on``github.com/imapex/gadd`` called``my_env_template``that you can use as a starting point. We'll explain later in this docuement on usage. See Option B or C on how to download.
 
 **Option II:**
 
@@ -88,7 +88,7 @@ After downloading the container and cloning/downloading the repo per above:
 
 	![docker ps output](ui/images/docker-ps-output.png)
 
-Okay, now lets to the actual demo.
+Okay, now lets run the demo.
 
 ###Usage  
 
