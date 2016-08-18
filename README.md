@@ -22,11 +22,12 @@ For phase 1, we don't actually have an IPS at the datacenter, so we'll simulate 
 * Docker, running on a MAC. (Docker PC version of this document is coming at a later date).
 * An account on: [developer.ciscospark.com](developer.ciscospark.com). (Create an account if you already don't have one).
 * A Cisco Spark account: [web.ciscospark.com](web.ciscospark.com). (Create an account if you already don't have one). 
-* If you don't have docker or are running a PC, we can run the demo with native python. However, you'll need to the following:
+* If you don't have docker or are running a PC, we can run the demo with native python. However, you'll need to the following.
 		
 	* Python 2.7+ 
 	* [setuptools package](https://pypi.python.org/pypi/setuptools)
 	* [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
+	* [acitoolkit](http://datacenter.github.io/acitoolkit/) (installed in a virtualenv, which we'll cover later in this doc.)
 	* ***other .... (need to fill this in).***
 
 ***NOTE 1: We'll be leveraging the local/internal labs for ACI and a NFVIS device, so you'll need connectivity to Cisco internal networks. However, pending future deployments on Cisco DevNet, this requirement might change... TBD (see next note).***
@@ -107,7 +108,16 @@ After cloning or downloading the repo to your laptop, (per above):
 
 * open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
-* Instantiate a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) environment.
+* Instantiate a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) environment, for example:
+
+		virtualenv venv
+		source venv/bin/activate
+* You should now be in a virtual enviroment (venv) terminal to load additional packages. From your venv enabled terminal window run:
+
+		pip install --requirement requirements.txt
+		
+* install the [acitoolkit](http://datacenter.github.io/acitoolkit/) in your new virtualenv instance.
+
 * copy the``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``.
 *  The demo is using internal APIC and NFVis devices, you only need to change the TOKEN_INPUT variable in the``gadd_setup_basic.sh``file. (In the future we will provide an install script if you'd like to use your own APIC or NFVis device).
 	* log into``developer.ciscospark.com``.
