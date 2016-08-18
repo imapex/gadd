@@ -86,7 +86,7 @@ After downloading the container and cloning/downloading the repo per above:
 		
 	* You should see output similar to below. Take note of the **PORTS** number, for example**``32794``**:
 
-	![docker ps output](ui/images/docker-ps-output.png)
+	![docker ps output](staticcontent/docker-ps-output.png)
 
 Okay, now lets run the demo.
 
