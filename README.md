@@ -20,12 +20,13 @@ For phase 1, we don't actually have an IPS at the datacenter, so we'll simulate 
 **Prerequisites**
 
 * Docker, running on a MAC. (Docker PC version of this document is coming at a later date).
-* An account on:``developer.ciscospark.com.``(Create an account if you already don't have one).
-* A Cisco Spark account:``web.ciscospark.com.``(Create an account if you already don't have one). 
+* An account on: [developer.ciscospark.com](developer.ciscospark.com). (Create an account if you already don't have one).
+* A Cisco Spark account: [web.ciscospark.com](web.ciscospark.com). (Create an account if you already don't have one). 
 * If you don't have docker or are running a PC, we can run the demo with native python. However, you'll need to the following:
 		
 	* Python 2.7+ 
 	* [setuptools package](https://pypi.python.org/pypi/setuptools)
+	* [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
 	* ***other .... (need to fill this in).***
 
 ***NOTE 1: We'll be leveraging the local/internal labs for ACI and a NFVIS device, so you'll need connectivity to Cisco internal networks. However, pending future deployments on Cisco DevNet, this requirement might change... TBD (see next note).***
@@ -66,10 +67,11 @@ After downloading the container and cloning/downloading the repo per above:
 
 * open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
-* copy``my_env_template``to``my_env``
-* If you are leveraging this demo as-is with the APIC and NFVis devices, you only need to change the TOKEN_INPUT variable. To do so:
-	* log into``developer.ciscospark.com``. Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Paste the token into the``my_env``file you created and save the file. Please keep the key word "Bearer". Here's an example:
+* copy``gadd_dock_env_template``to``gadd_dock_env``
+* The demo is using internal APIC and NFVis devices, you only need to change the TOKEN_INPUT variable in the``gadd_dock_env``file. (In the future we will provide an install script if you'd like to use your own APIC or NFVis device).
+	* log into``developer.ciscospark.com``.
+	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
+	* Paste the token into the``gadd_dock_env``file you created and save the file. Please keep the key word "Bearer". Here's an example:
 
 
             TOKEN_INPUT=Bearer R2VkYjClYTgtMTNiYy00YWQ2LY2TkYjBlYTgljNWE4Y2VkYjBlYTgTIyM2I2OTktMzRm
@@ -77,7 +79,7 @@ After downloading the container and cloning/downloading the repo per above:
 * Let's start up the container next by running this command, (make sure you're back in the``gadd``directory and terminal you were in earlier):
 
 		cd ui
-		docker run -it -d -P --env-file=my_env --name=gadddemo cpuskarz/gadd 
+		docker run -it -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd 
 		
 * We'll need to port number. open another terminal window (don't close your current one). Enter:
 
@@ -93,7 +95,7 @@ Okay, now lets run the demo.
 ###Usage  
 
 * Open your Spark client of choice.
-* Open a browser to``http://<your docker up address>:8000``
+* Open a browser to``http://<your docker up address>:8000``. You can find your docker ip by opening a terminal window and type:``docker-machine ip``
 * ... ***do the demo***.... (more work to be done here...)
 
 
@@ -101,14 +103,16 @@ Okay, now lets run the demo.
 
 ###Setup
 
-After downloading the container and cloning/downloading the repo per above:
+After cloning or downloading the repo to your laptop, (per above):
 
 * open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
-* copy the``gadd_setup_template.sh``to``gadd_setup.sh``.
-*  If you are leveraging this demo as-is with the APIC and NFVis devices, you only need to change the TOKEN_INPUT variable. To do so:
-	* log into``developer.ciscospark.com``. Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Paste the token into the``gadd_setup_static.sh``file you created and save the file. Please keep the key word "Bearer". Here's an example:
+* Instantiate a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) environment.
+* copy the``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``.
+*  The demo is using internal APIC and NFVis devices, you only need to change the TOKEN_INPUT variable in the``gadd_setup_basic.sh``file. (In the future we will provide an install script if you'd like to use your own APIC or NFVis device).
+	* log into``developer.ciscospark.com``.
+	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
+	* Paste the token into the``gadd_setup_basic.sh``file you created and save the file. Please keep the key word "Bearer". Here's an example:
 
 
             TOKEN_INPUT=Bearer R2VkYjClYTgtMTNiYy00YWQ2LY2TkYjBlYTgljNWE4Y2VkYjBlYTgTIyM2I2OTktMzRm
@@ -116,15 +120,14 @@ After downloading the container and cloning/downloading the repo per above:
 
 * Execute the following commands from within the``gadd``directory, (make sure you're back in the``gadd``directory and terminal you were in earlier):
 
-		source gadd_setup_static.sh
+		source gadd_setup_basic.sh
 		cd ui
 		
 	
 * You now should be in the``ui``directory. Execute the following commands:
 
 		php -S 0.0.0.0:8000
-		
-		
+				
 Okay, now lets run the demo.	
 	
 
