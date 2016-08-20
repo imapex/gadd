@@ -43,7 +43,7 @@ There are several ways to download this demo; docker container being the easiest
 The latest build of this project is available as a Docker image from Docker Hub
 
     docker pull imapex/gadd:tag
-You will also need to have an environmental variable file built. There's a template on``github.com/imapex/gadd`` called``gadd_dock_env_template``that you can use as a starting point. We'll explain later in this docuement on usage. See Option B or C on how to download.
+You will also need to have an environmental variable file built. There's a template on``github.com/imapex/gadd`` called``gadd_dock_env_template``that you can use as a starting point. We'll explain later in this docuement on usage. See Option II below on how to download.
 
 **Option II:**
 
@@ -91,12 +91,15 @@ After downloading the container and cloning/downloading the repo per above:
 
 	![docker ps output](staticcontent/docker-ps-output.png)
 
+	* You'll need your docker-machine IP address. In your terminal window, type:``docker-machine ip``).  
+	
+	
 Okay, now lets run the demo.
 
 ###Usage  
 
 * Open your Spark client of choice.
-* You'll need your docker-machine IP address. You can obtain it by opening a terminal window and type:``docker-machine ip``).
+
 * Open a browser to``http://<your docker up address>:<PORT_num>``. For example:
 
 		http://192.168.99.100:32794
