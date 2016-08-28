@@ -42,7 +42,7 @@ There are several ways to download this demo; docker container being the easiest
 
 The latest build of this project is available as a Docker image from Docker Hub
 
-    docker pull imapex/gadd:tag
+    docker pull cpuskarz/gadd:2
 You will also need to have an environmental variable file built. There's a template on``github.com/imapex/gadd`` called``gadd_dock_env_template``that you can use as a starting point. We'll explain later in this docuement on usage. See Option II below on how to download.
 
 **Option II:**
@@ -76,7 +76,8 @@ After downloading the container and cloning/downloading the repo per above:
 
 
             TOKEN_INPUT=Bearer R2VkYjClYTgtMTNiYy00YWQ2LY2TkYjBlYTgljNWE4Y2VkYjBlYTgTIyM2I2OTktMzRm
-            
+
+	* Enter the remaining information (usernames, passwords, urls) into the``gadd_dock_env``file.  Note that quotations``""``aren't needed.          
 * Let's start up the container next by running this command, (make sure you're back in the``gadd``directory and terminal you were in earlier):
 
 		cd ui
@@ -134,7 +135,7 @@ After cloning or downloading the repo to your laptop, (per above):
 
 
             TOKEN_INPUT=Bearer R2VkYjClYTgtMTNiYy00YWQ2LY2TkYjBlYTgljNWE4Y2VkYjBlYTgTIyM2I2OTktMzRm
-
+	* Enter the remaining information, (login_name, passwords, URL's) into the``gadd_setup_basic.sh``file. Note, that quotations``""`` are needed here.
 
 * Execute the following commands from within the``gadd``directory, (make sure you're back in the``gadd``directory and terminal you were in earlier):
 
