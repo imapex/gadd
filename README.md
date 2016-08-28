@@ -161,11 +161,6 @@ Okay, now lets run the demo.
 Provide any notes for other contributors.  This includes how to run tests / etc
 
 
-## Linting
-
-We use flake 8 to lint our code. Please keep the repository clean by running:
-
-    flake8
 
 ## Testing
 
