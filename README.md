@@ -72,14 +72,15 @@ After downloading the container and cloning/downloading the repo per above:
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the 	pop-up window.
-	* Copy file``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``
+	* In the``gadd``directory, copy file``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``
 		* Paste your Spark token into the``gadd_setup_basic.sh``file you created and save the file. Please keep the 'Bearer' keyword. Here's an example, notice the quotations are needed ``""``:
 		
 	
 				TOKEN_INPUT="Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm"
 	
 
-	* Next, copy``gadd_dock_env_template``to``gadd_dock_env``
+	* Next, in the``gadd`` directory copy``gadd_dock_env_template``to``gadd_dock_env``  
+ 
 		* Paste your Spark token into the``gadd_dock_env``file you created and save the file. Please keep the 	keyword "Bearer". Here's an example, notice the quotations are not needed here:
 
 
@@ -153,24 +154,23 @@ After cloning or downloading the repo to your laptop, (per above):
 		
 * install the [acitoolkit](http://datacenter.github.io/acitoolkit/) in your new virtualenv instance.
 
-* copy the``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``.  
-
-* The demo is using internal APIC and NFVis devices. ***Credentials will be provided or included in the template.*** (In the future we will provide an install script if you'd like to use your own APIC or NFVis device). You will need to provide your own Spark TOKEN_INPUT variable in the``gadd_setup_basic.sh``file. To obtain your own token:  
+* open a terminal and navigate into your downloaded repo directory
+* cd into the``gadd``directory
+* To make sure there's not an ASA deployment on the NFV device lingering from a previous demo, we'll setup your credentials then run cleanup script. First we'll need your Spark Token.
+* To obtain your own token:  
 	* log into``developer.ciscospark.com``.
-	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Paste the token into the``gadd_dock_env``file you created and save the file. Please keep the key word "Bearer". Here's an example:
-
-
-            TOKEN_INPUT=Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm
-
-
-	* Enter the remaining information, (login_name, passwords, URL's) into the``gadd_setup_basic.sh``file. Note, that quotations``""`` are needed here.
-
-* Execute the following commands from within the``gadd``directory, (make sure you're back in the``gadd``directory and terminal you were in earlier from within your virtualenv):
+	* Click the picture icon in the upper right hand corner of the page and copy your token from the 	pop-up window.  
+	* In the``gadd``directory copy file``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``
+		* Paste your Spark token into the``gadd_setup_basic.sh``file you created and save the file. Please keep the 'Bearer' keyword. Here's an example, notice the quotations are needed ``""``:
+		
+	
+				TOKEN_INPUT="Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm"
+	
+* Finally, lets set the NFVIS to defaults by running these commands from your terminal in the``gadd``directory:
 
 		source gadd_setup_basic.sh
+		source cleanup_nfvis.sh
 		cd ui/gophp
-		
 	
 * You now should be in the``gophp``directory. Execute the following commands:
 
