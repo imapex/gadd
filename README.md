@@ -68,6 +68,12 @@ After downloading the container and cloning/downloading the repo per above:
 
 * open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
+* To make sure there's not an ASA deployment on the NFV device from a previoud demo perhaps. Run this command from the``gadd``directory:
+***ToDO - need more clarity here i.e credentials setup...does it make sense just to include username/password being its a demo?***  
+
+		source clean_nvfis.sh
+		
+
 * copy``gadd_dock_env_template``to``gadd_dock_env``
 * The demo is using internal APIC and NFVis devices. ***Credentials will be provided or included in the template.*** (In the future we will provide an install script if you'd like to use your own APIC or NFVis device). You will need to provide your own Spark TOKEN_INPUT variable in the``gadd_dock_env``file. To obtain your own token:  
 	* log into``developer.ciscospark.com``.
