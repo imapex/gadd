@@ -72,28 +72,38 @@ After downloading the container and cloning/downloading the repo per above:
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the 	pop-up window.
-	* Copy file``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``
-		* Paste your Spark token into the``gadd_setup_basic.sh``file you created and save the file. Please keep the 'Bearer' keyword. Here's an example, notice the quotations are needed ``""``:
-		
+
+* Run these commands from the``gadd``directory. Don't close this window until demo is completed.
 	
-				TOKEN_INPUT="Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm"
-	
-
-	* Next, copy``gadd_dock_env_template``to``gadd_dock_env``
-		* Paste your Spark token into the``gadd_dock_env``file you created and save the file. Please keep the 	keyword "Bearer". Here's an example, notice the quotations are not needed here:
-
-
-            	TOKEN_INPUT=Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm
-
-* Finally, lets set the NFVIS to defaults by running these commands from your terminal in the``gadd``directory:
-
-		source gadd_setup_basic.sh
-		source cleanup_nfvis.sh
+		source gadd_setup.sh	
 		
-         
+	You'll be prompted for information:  
+	
+		* URL for NFVIS device, enter:	https://10.91.13.154
+		* NFV login name, enter:		admin
+		* NFV password, enter:			admin
+		* Spark token, enter:			<paste your token>
+		* URL for APIC device, enter:	http://10.91.86.180
+		* APIC login name, enter:		devopsone
+		* APIC password, enter:			devopsone
+		* Trigger event IP, enter:		10.100.1.10
+	
+	Next lets set our NFVIS device to a clean setup:
+	
+		source clean_nfvis.sh
+	
+		
+
+* Next, copy``gadd_dock_env_template``to``gadd_dock_env``
+	* Paste the token into the``gadd_dock_env``file you created and save the file. Please keep the key word "Bearer". Here's an example:
+
+
+            TOKEN_INPUT=Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm
+
+	* Enter the remaining information (usernames, passwords, urls) into the``gadd_dock_env``file.  Note that quotations``""``aren't needed.          
 * Let's start up the container next by running the following commands, (make sure you're back in the``gadd``directory and terminal you were in earlier):
 
-		cd ui/gophp
+		cd ui
 		docker run -it -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd:2 
 		
 * We'll need the port number. ***Open another terminal window (don't close your current one).*** Enter:
