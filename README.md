@@ -3,7 +3,6 @@
 
 
 
-***TBD:*** Any applicable badges (build/documentation/collaboration/licenses should go here
 
 # Description - Phase 1
 
@@ -185,7 +184,7 @@ Okay, now lets run the demo.
 
 * ***TBD click the Happy MAC icon to be taken to the NFV device page...***
 
-
+###________________________________________________
 
 # Development
 
