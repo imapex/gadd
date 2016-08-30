@@ -9,7 +9,7 @@
 
 The demo will highlight Spark and NFVIS along with ACI and NGIPS*. The idea of the demo is:  based on an event/alert in the datacenter, dynamically deploy a FW at offending remote branch and post notifications in a Spark room. The branch site has a NFVis device and only has a virtual router deployed/functioning as a starting point.
 
-For phase 1, we don't actually have an IPS at the datacenter, so we'll simulate the attack event. However, we do have ACI: we will gather health statistics of a server along with ingress/egress stats and send the information to our Spark room. In Phase 2 the plan is to have an actual IPS to provide 'real' events.
+For phase 1, we don't actually have an IPS at the datacenter, so we'll simulate the attack event. However, we do have ACI. Using the APIC APIs, we will gather health statistics of a server along with ingress/egress stats and send the information to our Spark room to simulate network impact. In Phase 2 the plan is to have an actual IPS to provide 'real' events.
 
 
 
@@ -28,26 +28,26 @@ For phase 1, we don't actually have an IPS at the datacenter, so we'll simulate 
 	* [setuptools package](https://pypi.python.org/pypi/setuptools)
 	* [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
 	* [acitoolkit](http://datacenter.github.io/acitoolkit/) (installed in a virtualenv, which we'll cover later in this doc.)
-	* ***other .... (need to fill this in).***
+  
+	
+***NOTE 1: We'll be leveraging the local/internal labs for ACI and a NFVIS device, so you'll need connectivity to Cisco internal networks. However, pending future deployments within Cisco DevNet and Mantl.io, this requirement might change.***
 
-***NOTE 1: We'll be leveraging the local/internal labs for ACI and a NFVIS device, so you'll need connectivity to Cisco internal networks. However, pending future deployments on Cisco DevNet, this requirement might change... TBD (see next note).***
 
-***NOTE 2, TBD: Deployment on Mantl, pending availability of ACI and NFVis accessibility in that environment. Our goal is to install/run in DevNet at a future date.*** 
 
 ## Downloading
 
-There are several ways to download this demo; docker container being the easiest.
+We'll need to download the docker container and the repo files.
 
-**Option I:**
+**Get the container:**
 
 The latest build of this project is available as a Docker image from Docker Hub
 
     docker pull cpuskarz/gadd:2
-You will also need to have an environmental variable file built. There's a template on``github.com/imapex/gadd`` called``gadd_dock_env_template``that you can use as a starting point. We'll explain later in this docuement on usage. See Option II below on how to download.
 
-**Option II:**
 
-If you have git installed, clone the repository
+**Get the repo:**
+
+If you have git installed, clone the repository. 
 
     git clone https://github.com/imapex/gadd
 
@@ -56,10 +56,11 @@ and extract.
 
 ## Installing
 
-We'll cover a few ways to install and run this demo. You have a choice of using either:  
-**- Docker container**   
-**- Running the python app native on our laptop.**   
-***- TBD: future, running on Mantl.io***
+We'll cover a two ways to install and run this demo. You have a choice of using either:  
+**- Docker container (with GUI)**   
+**- Running the python app native on our laptop (with GUI).** 
+  
+***- TBD: Future enhancement, running on Mantl.io***
 
 ##Option A: Running the Docker container (MAC)
  
@@ -69,21 +70,21 @@ After downloading the container and cloning/downloading the repo per above:
 * open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
 * copy``gadd_dock_env_template``to``gadd_dock_env``
-* The demo is using internal APIC and NFVis devices, you only need to change the TOKEN_INPUT variable in the``gadd_dock_env``file. (In the future we will provide an install script if you'd like to use your own APIC or NFVis device).
+* The demo is using internal APIC and NFVis devices. ***Credentials will be provided or included in the template.*** (In the future we will provide an install script if you'd like to use your own APIC or NFVis device). You will need to provide your own Spark TOKEN_INPUT variable in the``gadd_dock_env``file. To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
 	* Paste the token into the``gadd_dock_env``file you created and save the file. Please keep the key word "Bearer". Here's an example:
 
 
-            TOKEN_INPUT=Bearer R2VkYjClYTgtMTNiYy00YWQ2LY2TkYjBlYTgljNWE4Y2VkYjBlYTgTIyM2I2OTktMzRm
+            TOKEN_INPUT=Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm
 
 	* Enter the remaining information (usernames, passwords, urls) into the``gadd_dock_env``file.  Note that quotations``""``aren't needed.          
-* Let's start up the container next by running this command, (make sure you're back in the``gadd``directory and terminal you were in earlier):
+* Let's start up the container next by running the following commands, (make sure you're back in the``gadd``directory and terminal you were in earlier):
 
 		cd ui
-		docker run -it -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd 
+		docker run -it -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd:2 
 		
-* We'll need the port number. Open another terminal window (don't close your current one). Enter:
+* We'll need the port number. ***Open another terminal window (don't close your current one).*** Enter:
 
 
 		docker ps
@@ -92,7 +93,7 @@ After downloading the container and cloning/downloading the repo per above:
 
 	![docker ps output](staticcontent/docker-ps-output.png)
 
-	* You'll need your docker-machine IP address. In your terminal window, type:``docker-machine ip``).  
+	* You'll need your docker-machine IP address. If you don't know the IP, in your terminal window, type:``docker-machine ip``).  
 	
 	
 Okay, now lets run the demo.
@@ -106,7 +107,20 @@ Okay, now lets run the demo.
 		http://192.168.99.100:32794
 		
 
-* ... ***do the demo***.... (more work to be done here...)
+* You'll see something like this showing the application healthscore from ACI:
+
+![gui1.png](staticcontent/gui1.png)  
+ 
+
+* Click the virus icon and watch for messages in Spark client (a new room called Gadd Alert Room will be created for you). 
+* Once the messages complete and the NFV deployment, your webpage should change to:  
+
+![globeworld.png](staticcontent/globeworld.png) 
+
+* Click the globe icon and you'll be taken back to the ACI healthscore page but with much better health!.  
+
+* ***TBD click the Happy MAC icon to be taken to the NFV device page...***
+
 
 
 ##Option B: Python app on your laptop without Docker. 
@@ -127,23 +141,26 @@ After cloning or downloading the repo to your laptop, (per above):
 		
 * install the [acitoolkit](http://datacenter.github.io/acitoolkit/) in your new virtualenv instance.
 
-* copy the``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``.
-*  The demo is using internal APIC and NFVis devices, you only need to change the TOKEN_INPUT variable in the``gadd_setup_basic.sh``file. (In the future we will provide an install script if you'd like to use your own APIC or NFVis device).
+* copy the``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``.  
+
+* The demo is using internal APIC and NFVis devices. ***Credentials will be provided or included in the template.*** (In the future we will provide an install script if you'd like to use your own APIC or NFVis device). You will need to provide your own Spark TOKEN_INPUT variable in the``gadd_setup_basic.sh``file. To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Paste the token into the``gadd_setup_basic.sh``file you created and save the file. Please keep the key word "Bearer". Here's an example:
+	* Paste the token into the``gadd_dock_env``file you created and save the file. Please keep the key word "Bearer". Here's an example:
 
 
-            TOKEN_INPUT=Bearer R2VkYjClYTgtMTNiYy00YWQ2LY2TkYjBlYTgljNWE4Y2VkYjBlYTgTIyM2I2OTktMzRm
+            TOKEN_INPUT=Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm
+
+
 	* Enter the remaining information, (login_name, passwords, URL's) into the``gadd_setup_basic.sh``file. Note, that quotations``""`` are needed here.
 
-* Execute the following commands from within the``gadd``directory, (make sure you're back in the``gadd``directory and terminal you were in earlier):
+* Execute the following commands from within the``gadd``directory, (make sure you're back in the``gadd``directory and terminal you were in earlier from within your virtualenv):
 
 		source gadd_setup_basic.sh
-		cd ui
+		cd ui/gophp
 		
 	
-* You now should be in the``ui``directory. Execute the following commands:
+* You now should be in the``gophp``directory. Execute the following commands:
 
 		php -S 0.0.0.0:8000
 				
@@ -153,7 +170,21 @@ Okay, now lets run the demo.
 ###Usage
 * Open your Spark client of choice.
 * Open a browser to``http://localhost:8000``
-* ... ***do the demo***.... (more work to be done here...)
+
+* You'll see something like this showing the application healthscore from ACI:
+
+![gui1.png](staticcontent/gui1.png)  
+ 
+
+* Click the virus icon and watch for messages in Spark client (a new room called Gadd Alert Room will be created for you). 
+* Once the messages complete and the NFV deployment, your webpage should change to:  
+
+![globeworld.png](staticcontent/globeworld.png) 
+
+* Click the globe icon and you'll be taken back to the ACI healthscore page but with much better health!.  
+
+* ***TBD click the Happy MAC icon to be taken to the NFV device page...***
+
 
 
 # Development
@@ -162,7 +193,7 @@ Provide any notes for other contributors.  This includes how to run tests / etc
 
 
 
-## Testing
+## TBD: Testing
 
 The IMAPEX team should attempt to have unittests with  100% code coverage. An example test suite is contained
 within the tests.py file for the boilerplate application
