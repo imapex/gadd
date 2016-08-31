@@ -68,33 +68,28 @@ After downloading the container and cloning/downloading the repo per above:
 
 * open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
-* To make sure there's not an ASA deployment on the NFV device lingering from a previous demo, we'll setup your credentials then run cleanup script. First we'll need your Spark Token.
+* To make sure there's not an ASA deployment on the NFV device lingering from a previous demo, we'll setup your credentials and prepare the environment with two scripts. But first we'll need your Spark Token.
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
-	* Click the picture icon in the upper right hand corner of the page and copy your token from the 	pop-up window.
-	* In the``gadd``directory, copy file``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``
-		* Paste your Spark token into the``gadd_setup_basic.sh``file you created and save the file. Please keep the 'Bearer' keyword. Here's an example, notice the quotations are needed ``""``:
-		
-	
-				TOKEN_INPUT="Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm"
-	
+	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
+	* Next in your terminal enter:``gadd_setup.sh``and answer the questions at the prompts. You'll need the following information to complete this task:  
 
-	* Next, in the``gadd`` directory copy``gadd_dock_env_template``to``gadd_dock_env``  
- 
-		* Paste your Spark token into the``gadd_dock_env``file you created and save the file. Please keep the 	keyword "Bearer". Here's an example, notice the quotations are not needed here:
+		* NFVIS URL:			``https://10.91.13.154``
+		* NFVIS LOGIN:		``admin``
+		* NFVIS PASSWORD:	``admin``
+		* SPARK TOKEN:		``<paste your token here>``
+		* APIC URL:			``http://10.91.86.180``
+		* APIC LOGIN:			``devopsone``
+		* APIC PASSWORD:		``devopsone``
+		* TRIGGER IP:			``10.100.1.10``
+		 
+* Next lets make sure the NFVIS device is clean, enter:
 
-
-            	TOKEN_INPUT=Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm
-
-* Finally, lets set the NFVIS to defaults by running these commands from your terminal in the``gadd``directory:
-
-		source gadd_setup_basic.sh
-		source cleanup_nfvis.sh
-		
+		source prep_nfvis.sh
+		 
          
-* Let's start up the container next by running the following commands, (make sure you're back in the``gadd``directory and terminal you were in earlier):
+* Let's start up the container by running the following command, (make sure you're in the``gadd``directory and terminal you were in earlier):
 
-		cd ui/gophp
 		docker run -it -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd:2 
 		
 * We'll need the port number. ***Open another terminal window (don't close your current one).*** Enter:
@@ -134,7 +129,13 @@ Okay, now lets run the demo.
 
 * ***TBD click the Happy MAC icon to be taken to the NFV device page...***
 
+* When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, enter:
 
+		source cleanup_nfvis.sh
+		docker rm gadddemo
+		docker rmi cpuskarz/gadd:2 (this is optional)
+
+#_____________________________________
 
 ##Option B: Python app on your laptop without Docker. 
 
@@ -156,23 +157,28 @@ After cloning or downloading the repo to your laptop, (per above):
 
 * open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
-* To make sure there's not an ASA deployment on the NFV device lingering from a previous demo, we'll setup your credentials then run cleanup script. First we'll need your Spark Token.
+* To make sure there's not an ASA deployment on the NFV device lingering from a previous demo, we'll setup your credentials and prepare the environment with two scripts. But first we'll need your Spark Token.
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
-	* Click the picture icon in the upper right hand corner of the page and copy your token from the 	pop-up window.  
-	* In the``gadd``directory copy file``gadd_setup_basic_template.sh``to``gadd_setup_basic.sh``
-		* Paste your Spark token into the``gadd_setup_basic.sh``file you created and save the file. Please keep the 'Bearer' keyword. Here's an example, notice the quotations are needed ``""``:
-		
-	
-				TOKEN_INPUT="Bearer R3VkYjXYZgtMTNiYy00YWQ2LY2TkYjXYZTgljNWE4Y2VkYjBlYTgTIyMXXXTktMzRm"
-	
-* Finally, lets set the NFVIS to defaults by running these commands from your terminal in the``gadd``directory:
+	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
+	* Next in your terminal enter:``gadd_setup.sh``and answer the questions at the prompts. You'll need the following information to complete this task:  
 
-		source gadd_setup_basic.sh
-		source cleanup_nfvis.sh
+		* NFVIS URL:			``https://10.91.13.154``
+		* NFVIS LOGIN:		``admin``
+		* NFVIS PASSWORD:	``admin``
+		* SPARK TOKEN:		``<paste your token here>``
+		* APIC URL:			``http://10.91.86.180``
+		* APIC LOGIN:			``devopsone``
+		* APIC PASSWORD:		``devopsone``
+		* TRIGGER IP:			``10.100.1.10``
+		 
+* Next lets make sure the NFVIS device is clean, enter:
+
+		source prep_nfvis.sh
 		cd ui/gophp
+
 	
-* You now should be in the``gophp``directory. Execute the following commands:
+* You now should be in the``gophp``directory. Execute the following command:
 
 		php -S 0.0.0.0:8000
 				
@@ -196,6 +202,10 @@ Okay, now lets run the demo.
 * Click the globe icon and you'll be taken back to the ACI healthscore page but with much better health!.  
 
 * ***TBD click the Happy MAC icon to be taken to the NFV device page...***
+
+* When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, enter:
+
+		source cleanup_nfvis.sh
 
 #___________________________________
 
