@@ -29,8 +29,8 @@ In Phase 2 the plan is to have an actual IPS to provide 'real' events to a real 
 * If you don't have docker or are running a PC, we can run the demo with native python. However, you'll need to the following.
 		
 	* Python 2.7+ 
-	* [setuptools package](https://pypi.python.org/pypi/setuptools)
 	* [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
+	* [setuptools package](https://pypi.python.org/pypi/setuptools) (we'll do this during the acitoolkit install)
 	* [acitoolkit](http://datacenter.github.io/acitoolkit/) (installed in a virtualenv, which we'll cover later in this doc.)
 
 
@@ -90,7 +90,7 @@ After downloading the container and cloning/downloading the repo per above:
          
 * Let's start up the container by running the following command, (make sure you're in the``gadd``directory and terminal you were in earlier):
 
-		docker run -it -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd:2 
+		docker run -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd:2 
 		
 * We'll need the port number. ***Open another terminal window (don't close your current one).*** Enter:
 
@@ -131,9 +131,13 @@ Okay, now lets run the demo.
 
 * When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, enter:
 
+		docker stop gadddemo
 		source cleanup_nfvis.sh
-		docker rm gadddemo
-		docker rmi cpuskarz/gadd:2 (this is optional)
+		docker rm gadddemo  
+		
+* Optional command. This will delete the docker container
+		
+		docker rmi cpuskarz/gadd:2
 
 #_____________________________________
 
@@ -155,8 +159,7 @@ After cloning or downloading the repo to your laptop, (per above):
 		
 * install the [acitoolkit](http://datacenter.github.io/acitoolkit/) in your new virtualenv instance.
 
-* open a terminal and navigate into your downloaded repo directory
-* cd into the``gadd``directory
+* Naviagate back into your downloaded repo``gadd``directory.
 * To make sure there's not an ASA deployment on the NFV device lingering from a previous demo, we'll setup your credentials and prepare the environment with two scripts. But first we'll need your Spark Token.
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
@@ -203,9 +206,16 @@ Okay, now lets run the demo.
 
 * ***TBD click the Happy MAC icon to be taken to the NFV device page...***
 
-* When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, enter:
+* When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, where you had started the php server. We need to stop that service, enter:
 
+		Ctrl-C
+		
+* After the php service stops, enter:  
+
+		cd ../..
+		deactivate
 		source cleanup_nfvis.sh
+	
 
 #___________________________________
 
