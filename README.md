@@ -66,13 +66,13 @@ We'll cover a two ways to install and run this demo. You have a choice of using 
 ###Setup 
 After downloading the container and cloning/downloading the repo per above:
 
-* open a terminal and navigate into your downloaded repo directory
+* Open a terminal and navigate into your downloaded repo directory
 * cd into the``gadd``directory
 * To make sure there's not an ASA deployment on the NFV device lingering from a previous demo, we'll setup your credentials and prepare the environment with two scripts. But first we'll need your Spark Token.
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Next in your terminal enter:``gadd_setup.sh``and answer the questions at the prompts. You'll need the following information to complete this task:  
+	* Next in your terminal enter:``source 	gadd_setup.sh``and answer the questions at the prompts. 	You'll need the following information to complete this 	task:  
 
 		* NFVIS URL:			``https://10.91.13.154``
 		* NFVIS LOGIN:		``admin``
@@ -161,7 +161,7 @@ After cloning or downloading the repo to your laptop, (per above):
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Next in your terminal enter:``gadd_setup.sh``and answer the questions at the prompts. You'll need the following information to complete this task:  
+	* Next in your terminal enter:``source gadd_setup.sh``and answer the questions at the prompts. You'll need the following information to complete this task:  
 
 		* NFVIS URL:			``https://10.91.13.154``
 		* NFVIS LOGIN:		``admin``
