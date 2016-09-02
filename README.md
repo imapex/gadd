@@ -81,7 +81,7 @@ After downloading the container and cloning/downloading the repo per above:
 		* APIC URL:			``http://10.91.86.180``
 		* APIC LOGIN:			``devopsone``
 		* APIC PASSWORD:		``devopsone``
-		* TRIGGER IP:			``10.100.1.10``
+		* TRIGGER IP:			``172.16.91.77``
 		 
 * Next lets make sure the NFVIS device is clean, enter:
 
@@ -117,7 +117,7 @@ Okay, now lets run the demo.
 
 * You'll see something like this showing the application healthscore from ACI:
 
-![gui1.png](staticcontent/gui1.png)  
+![gui-health20.png](staticcontent/gui-health20.png)  
  
 
 * Click the virus icon and watch for messages in Spark client (a new room called Gadd Alert Room will be created for you). 
@@ -127,7 +127,20 @@ Okay, now lets run the demo.
 
 * Click the globe icon and you'll be taken back to the ACI healthscore page but with much better health!.  
 
-* ***TBD click the Happy MAC icon to be taken to the NFV device page...***
+* Click on the MAC icon to be taken to the NFV login page. Login with``admin / admin``.
+
+![nfv_login.png](staticcontent/nfv_login.png)
+
+* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Click the``console`` icon next to the ASA deployment. 
+
+![nfvs_nav.png](staticcontent/nfvs_nav.png)
+
+* ***TBD MORE WORK TO DO HERE***. You'll be in the ASA console at this point. ping etc... 
+
+![nfv_asa_con.png](staticcontent/nfv_asa_con.png)
+
+
+
 
 * When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, enter:
 
@@ -173,7 +186,7 @@ After cloning or downloading the repo to your laptop, (per above):
 		* APIC URL:			``http://10.91.86.180``
 		* APIC LOGIN:			``devopsone``
 		* APIC PASSWORD:		``devopsone``
-		* TRIGGER IP:			``10.100.1.10``
+		* TRIGGER IP:			``172.16.91.77``
 		 
 * Next lets make sure the NFVIS device is clean, enter:
 
@@ -204,7 +217,19 @@ Okay, now lets run the demo.
 
 * Click the globe icon and you'll be taken back to the ACI healthscore page but with much better health!.  
 
-* ***TBD click the Happy MAC icon to be taken to the NFV device page...***
+* Click on the MAC icon to be taken to the NFV login page. Login with``admin / admin``.
+
+![nfv_login.png](staticcontent/nfv_login.png)
+
+* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Click the``console`` icon next to the ASA deployment. 
+
+![nfvs_nav.png](staticcontent/nfvs_nav.png)
+
+* ***TBD MORE WORK TO DO HERE***. You'll be in the ASA console at this point. ping etc... 
+
+![nfv_asa_con.png](staticcontent/nfv_asa_con.png)
+
+
 
 * When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, where you had started the php server. We need to stop that service, enter:
 
