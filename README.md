@@ -10,7 +10,7 @@ The demo will highlight Spark and NFVIS along with ACI* and NGIPS*. The idea of 
 
 For phase 1, we currently don't actually have an IPS in the lab, so we'll simulate the attack event. However, we do have ACI. Using the APIC APIs, we will gather health statistics of a tenant along with ingress/egress stats and send the information to our Spark room to simulate network impact.  
 
-In Phase 2 the plan is to have an actual IPS to provide 'real' events to a real server runnning on an ACI fabric. Therefore it's important to note that for Phase 1, this demo ***is*** dependent on the ACI hardware inside our Chgo lab. To reiterate, please see the following notes:
+In Phase 2 the plan is to have an actual IPS to provide 'real' events to an actual server runnning on an ACI fabric. Therefore it's important to note that for Phase 1, this demo ***is*** dependent on the ACI hardware inside our Chgo lab. To reiterate, please see the following notes:
 
 * ***NOTE 1 - Phase 1: We'll be leveraging the local/internal labs for ACI and a NFVIS device, so you'll need connectivity to Cisco specific labs documented in this README. However, pending future deployments within Cisco DevNet/Sandbox and Mantl.io, this requirement should change.***
 
