@@ -4,15 +4,15 @@
 
 
 
-# Description - Phase 1
+# Description - Phase 1 (simulation phase)
 
 The demo will highlight Spark and NFVIS along with ACI* and NGIPS*. The idea of the demo is:  based on an event/alert in the datacenter, dynamically deploy a FW at offending remote branch and post notifications in a Spark room. The branch site has a NFVis device and only has a virtual router deployed/functioning as a starting point.
 
-For phase 1, we currently don't actually have an IPS in the lab, so we'll simulate the attack event. However, we do have ACI. Using the APIC APIs, we will gather health statistics of a tenant along with ingress/egress stats and send the information to our Spark room to simulate network impact.  
+For phase 1, we currently don't actually have an IPS in the lab, so we'll __simulate__ the attack event. However, we do have ACI. Using the APIC APIs, we will gather health statistics of a tenant along with ingress/egress stats and send the information to our Spark room to __simulate__ network impact.  
 
 In Phase 2 the plan is to have an actual IPS to provide 'real' events to an actual server runnning on an ACI fabric. Therefore it's important to note that for Phase 1, this demo ***is*** dependent on the ACI hardware inside our Chgo lab. To reiterate, please see the following notes:
 
-* ***NOTE 1 - Phase 1: We'll be leveraging the local/internal labs for ACI and a NFVIS device, so you'll need connectivity to Cisco specific labs documented in this README. However, pending future deployments within Cisco DevNet/Sandbox and Mantl.io, this requirement should change.***
+* ***NOTE 1 - Phase 1: We'll be leveraging the local/internal labs for ACI and a NFVIS device, so you'll need connectivity to Cisco specific labs documented in this README. However in phase 2, pending future deployments within Cisco DevNet/Sandbox and Mantl.io, this requirement should change.*** 
 
 * ***NOTE 2 - Phase 2: When we do have Phase 2 built, we'll provide documentation on how you can deploy/run this demo in your own lab.***
 
@@ -72,7 +72,9 @@ After downloading the container and cloning/downloading the repo per above:
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Next in your terminal enter:``source 	gadd_setup.sh``and answer the questions at the prompts. 	You'll need the following information to complete this 	task:  
+	* Next, in your terminal enter:  ``source gadd_setup.sh``
+			  
+		and answer the questions at the prompts. 		You'll need the following information to complete this 		task:  
 
 		* NFVIS URL:			``https://10.91.13.154``
 		* NFVIS LOGIN:		``admin``
@@ -86,6 +88,8 @@ After downloading the container and cloning/downloading the repo per above:
 * Next lets make sure the NFVIS device is clean, enter:
 
 		source prep_nfvis.sh
+
+---
 		 
 ###---- Optional Section A1 ----
 You can log into the NFV device to verify there isn't an ASA deployed. You should only see the CSR. Open a browser to:
@@ -107,14 +111,14 @@ Let's verify that traffic isn't being blocked to our server. RDP to:
 	password: cisco_123
 	domain: CENTRAL
 	
-* From within our RDP session, open up a terminal window and ping our server at:``172.16.118.120`` - pings should be successful.
-
+* From within our RDP session, open up a terminal window and ping a server at:``172.16.118.120`` - pings should be successful.
 * You can run a continous ping if you'd like:``ping -t 172.16.118.120``
-
 * Just let the ping run and minimize your RDP window, we'll come back to this later.
  
 
 ####---- End of Optional Section A1 ----  
+
+--- 
 	
 ###Setup continued	        
 * Let's start up the container by running the following command, (make sure you're in the``gadd``directory and terminal you were in earlier):
@@ -164,6 +168,8 @@ Okay, now lets run the demo.
 
 ![nfvs_nav.png](staticcontent/nfvs_nav.png)
 
+--- 
+
 ### ---- Optional Section A2 ----  
 Let's verify that the ASA is actually blocking traffic. If you haven't already done so, RDP to:  
 
@@ -172,12 +178,14 @@ Let's verify that the ASA is actually blocking traffic. If you haven't already d
 	password: cisco_123
 	domain: CENTRAL
 	
-* If you did Optional Section A1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping our server at:``172.16.118.120`` - pings should fail.
+* If you did Optional Section A1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping a server at:``172.16.118.120`` - pings should fail.
 
 * Close your RDP session when your done.
 
 
 #### ---- End of Optional Section A2 ----  
+---
+
 
 * When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, enter:
 
@@ -214,7 +222,9 @@ After cloning or downloading the repo to your laptop, (per above):
 * To obtain your own token:  
 	* log into``developer.ciscospark.com``.
 	* Click the picture icon in the upper right hand corner of the page and copy your token from the pop-up window.
-	* Next in your terminal enter:``source gadd_setup.sh``and answer the questions at the prompts. You'll need the following information to complete this task:  
+	* Next, in your terminal enter:``source gadd_setup.sh``  
+	
+		and answer the questions at the prompts. You'll need the following information to 		complete this task:  
 
 		* NFVIS URL:			``https://10.91.13.154``
 		* NFVIS LOGIN:		``admin``
@@ -229,6 +239,8 @@ After cloning or downloading the repo to your laptop, (per above):
 
 		source prep_nfvis.sh
 		cd ui/gophp
+
+---
 
 ###---- Optional Section B1 ----
 You can log into the NFV device to verify there isn't an ASA deployed. You should only see the CSR. Open a browser to:
@@ -250,14 +262,14 @@ Let's verify that traffic isn't being blocked to our server. RDP to:
 	password: cisco_123
 	domain: CENTRAL
 	
-* From within the RDP session, open up a terminal window and ping our server at:``172.16.118.120`` - pings should be successful.
-
+* From within the RDP session, open up a terminal window and ping a server at:``172.16.118.120`` - pings should be successful.
 * You can run a continous ping if you'd like:``ping -t 172.16.118.120``
-
 * Just let the ping run and minimize your RDP window, we'll come back to this later.
  
 
+
 ####---- End of Optional Section B1 ----  
+---
 	
 
 ###Setup continued  
@@ -294,6 +306,7 @@ Okay, now lets run the demo.
 
 ![nfvs_nav.png](staticcontent/nfvs_nav.png)
 
+---
 ### ---- Optional Section B2 ----  
 Let's verify that the ASA is actually blocking traffic. If you haven't already done so, RDP to:  
 
@@ -302,13 +315,13 @@ Let's verify that the ASA is actually blocking traffic. If you haven't already d
 	password: cisco_123
 	domain: CENTRAL
 	
-* If you did Optional Section B1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping our server at:``172.16.118.120`` - pings should fail.
+* If you did Optional Section B1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping a server at:``172.16.118.120`` - pings should fail.
 
 * Close your RDP session when your done.
 
 
 #### ---- End of Optional Section B2 ----  
-
+---
 
 
 * When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, where you had started the php server. We need to stop that service, enter:
