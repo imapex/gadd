@@ -23,7 +23,7 @@ In Phase 2 the plan is to have an actual IPS to provide 'real' events to an actu
 
 **Prerequisites**
 
-* Docker, running on a MAC. (Docker PC version of this document is coming at a later date).
+* [Docker](https://docs.docker.com/engine/installation/mac/), running on a MAC. (Docker PC version of this document is coming at a later date).
 * An account on: [developer.ciscospark.com](developer.ciscospark.com). (Create an account if you already don't have one).
 * A Cisco Spark account: [web.ciscospark.com](web.ciscospark.com). (Create an account if you already don't have one). 
 * If you don't have docker or are running a PC, we can run the demo with native python. However, you'll need to the following.
@@ -87,7 +87,36 @@ After downloading the container and cloning/downloading the repo per above:
 
 		source prep_nfvis.sh
 		 
-         
+###---- Optional Section A1 ----
+You can log into the NFV device to verify there isn't an ASA deployed. You should only see the CSR. Open a browser to:
+
+	https://10.91.13.154  
+	username: admin  
+	password: admin
+
+*  Naviate the menu on the left panel: ****VM Life Cycle / Manage****. You should see that only a CSR is deployed.
+
+	![check_nfv_prep.png](staticcontent/check_nfv_prep.png)
+	
+* You can close this browser. 
+
+Let's verify that traffic isn't being blocked to our server. RDP to:  
+
+	10.91.13.170
+	username: gadd
+	password: cisco_123
+	domain: CENTRAL
+	
+* From within our RDP session, open up a terminal window and ping our server at:``172.16.118.120`` - pings should be successful.
+
+* You can run a continous ping if you'd like:``ping -t 172.16.118.120``
+
+* Just let the ping run and minimize your RDP window, we'll come back to this later.
+ 
+
+####---- End of Optional Section A1 ----  
+	
+###Setup continued	        
 * Let's start up the container by running the following command, (make sure you're in the``gadd``directory and terminal you were in earlier):
 
 		docker run -d -P --env-file=gadd_dock_env --name=gadddemo cpuskarz/gadd:2 
@@ -131,16 +160,24 @@ Okay, now lets run the demo.
 
 ![nfv_login.png](staticcontent/nfv_login.png)
 
-* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Click the``console`` icon next to the ASA deployment. 
+* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Here, you can see that an ASA has been deployed. If you'd like to look at the ASA config, you can click the``console`` icon next to the ASA deployment . 
 
 ![nfvs_nav.png](staticcontent/nfvs_nav.png)
 
-* ***TBD MORE WORK TO DO HERE***. You'll be in the ASA console at this point. ping etc... 
+### ---- Optional Section A2 ----  
+Let's verify that the ASA is actually blocking traffic. If you haven't already done so, RDP to:  
 
-![nfv_asa_con.png](staticcontent/nfv_asa_con.png)
+	10.91.13.170
+	username: gadd
+	password: cisco_123
+	domain: CENTRAL
+	
+* If you did Optional Section A1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping our server at:``172.16.118.120`` - pings should fail.
+
+* Close your RDP session when your done.
 
 
-
+#### ---- End of Optional Section A2 ----  
 
 * When you're done with the demo, we need to clean up after ourselves. You should still have the same terminal window open and are in the``gadd``directory, enter:
 
@@ -193,6 +230,37 @@ After cloning or downloading the repo to your laptop, (per above):
 		source prep_nfvis.sh
 		cd ui/gophp
 
+###---- Optional Section B1 ----
+You can log into the NFV device to verify there isn't an ASA deployed. You should only see the CSR. Open a browser to:
+
+	https://10.91.13.154  
+	username: admin  
+	password: admin
+
+*  Naviate the menu on the left panel: ****VM Life Cycle / Manage****. You should see that only a CSR is deployed.
+
+	![check_nfv_prep.png](staticcontent/check_nfv_prep.png)
+	
+* You can close this browser. 
+
+Let's verify that traffic isn't being blocked to our server. RDP to:  
+
+	10.91.13.170
+	username: gadd
+	password: cisco_123
+	domain: CENTRAL
+	
+* From within the RDP session, open up a terminal window and ping our server at:``172.16.118.120`` - pings should be successful.
+
+* You can run a continous ping if you'd like:``ping -t 172.16.118.120``
+
+* Just let the ping run and minimize your RDP window, we'll come back to this later.
+ 
+
+####---- End of Optional Section B1 ----  
+	
+
+###Setup continued  
 	
 * You now should be in the``gophp``directory. Execute the following command:
 
@@ -221,13 +289,25 @@ Okay, now lets run the demo.
 
 ![nfv_login.png](staticcontent/nfv_login.png)
 
-* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Click the``console`` icon next to the ASA deployment. 
+* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Here, you can see that an ASA has been deployed. If you'd like to look at the ASA config, you can click the``console`` icon next to the ASA deployment . 
+
 
 ![nfvs_nav.png](staticcontent/nfvs_nav.png)
 
-* ***TBD MORE WORK TO DO HERE***. You'll be in the ASA console at this point. ping etc... 
+### ---- Optional Section B2 ----  
+Let's verify that the ASA is actually blocking traffic. If you haven't already done so, RDP to:  
 
-![nfv_asa_con.png](staticcontent/nfv_asa_con.png)
+	10.91.13.170
+	username: gadd
+	password: cisco_123
+	domain: CENTRAL
+	
+* If you did Optional Section B1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping our server at:``172.16.118.120`` - pings should fail.
+
+* Close your RDP session when your done.
+
+
+#### ---- End of Optional Section B2 ----  
 
 
 
