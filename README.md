@@ -92,29 +92,8 @@ After downloading the container and cloning/downloading the repo per above:
 ---
 		 
 ###---- Optional Section A1 ----
-You can log into the NFV device to verify there isn't an ASA deployed. You should only see the CSR. Open a browser to:
 
-	https://10.91.13.154  
-	username: admin  
-	password: admin
-
-*  Naviate the menu on the left panel: ****VM Life Cycle / Manage****. You should see that only a CSR is deployed.
-
-	![check_nfv_prep.png](staticcontent/check_nfv_prep.png)
-	
-* You can close this browser. 
-
-Let's verify that traffic isn't being blocked to our server. RDP to:  
-
-	10.91.13.170
-	username: gadd
-	password: cisco_123
-	domain: CENTRAL
-	
-* From within our RDP session, open up a terminal window and ping a server at:``172.16.118.120`` - pings should be successful.
-* You can run a continous ping if you'd like:``ping -t 172.16.118.120``
-* Just let the ping run and minimize your RDP window, we'll come back to this later.
- 
+PLACEHOLDER 
 
 ####---- End of Optional Section A1 ----  
 
@@ -171,17 +150,8 @@ Okay, now lets run the demo.
 --- 
 
 ### ---- Optional Section A2 ----  
-Let's verify that the ASA is actually blocking traffic. If you haven't already done so, RDP to:  
 
-	10.91.13.170
-	username: gadd
-	password: cisco_123
-	domain: CENTRAL
-	
-* If you did Optional Section A1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping a server at:``172.16.118.120`` - pings should fail.
-
-* Close your RDP session when your done.
-
+PLACEHOLDER
 
 #### ---- End of Optional Section A2 ----  
 ---
@@ -243,30 +213,8 @@ After cloning or downloading the repo to your laptop, (per above):
 ---
 
 ###---- Optional Section B1 ----
-You can log into the NFV device to verify there isn't an ASA deployed. You should only see the CSR. Open a browser to:
 
-	https://10.91.13.154  
-	username: admin  
-	password: admin
-
-*  Naviate the menu on the left panel: ****VM Life Cycle / Manage****. You should see that only a CSR is deployed.
-
-	![check_nfv_prep.png](staticcontent/check_nfv_prep.png)
-	
-* You can close this browser. 
-
-Let's verify that traffic isn't being blocked to our server. RDP to:  
-
-	10.91.13.170
-	username: gadd
-	password: cisco_123
-	domain: CENTRAL
-	
-* From within the RDP session, open up a terminal window and ping a server at:``172.16.118.120`` - pings should be successful.
-* You can run a continous ping if you'd like:``ping -t 172.16.118.120``
-* Just let the ping run and minimize your RDP window, we'll come back to this later.
- 
-
+PLACEHOLDER 
 
 ####---- End of Optional Section B1 ----  
 ---
@@ -308,17 +256,8 @@ Okay, now lets run the demo.
 
 ---
 ### ---- Optional Section B2 ----  
-Let's verify that the ASA is actually blocking traffic. If you haven't already done so, RDP to:  
 
-	10.91.13.170
-	username: gadd
-	password: cisco_123
-	domain: CENTRAL
-	
-* If you did Optional Section B1 earlier, you should see that your pings have failed. If you didn't, open up a terminal window and ping a server at:``172.16.118.120`` - pings should fail.
-
-* Close your RDP session when your done.
-
+PLACEHOLDER
 
 #### ---- End of Optional Section B2 ----  
 ---
