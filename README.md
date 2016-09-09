@@ -143,9 +143,9 @@ Okay, now lets run the demo.
 
 ![nfv_login.png](staticcontent/nfv_login.png)
 
-* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Here, you can see that an ASA has been deployed. If you'd like to look at the ASA config, you can click the``console`` icon next to the ASA deployment . 
+* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Here, you can see that an ASA has been deployed.
 
-![nfvs_nav.png](staticcontent/nfvs_nav.png)
+![check_nfv_asa.png](staticcontent/check_nfv_asa.png)
 
 --- 
 
@@ -249,10 +249,9 @@ Okay, now lets run the demo.
 
 ![nfv_login.png](staticcontent/nfv_login.png)
 
-* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Here, you can see that an ASA has been deployed. If you'd like to look at the ASA config, you can click the``console`` icon next to the ASA deployment . 
+* Naviate the menu on the left panel: ****VM Life Cycle / Manage****. Here, you can see that an ASA has been deployed.
 
-
-![nfvs_nav.png](staticcontent/nfvs_nav.png)
+![check_nfv_asa.png](staticcontent/check_nfv_asa.png)
 
 ---
 ### ---- Optional Section B2 ----  
